@@ -1,23 +1,590 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+ <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "순천이삿짐센터 이사전문",
+      "image": "https://yourdomain.com/suncheon_moving_truck.png",
+      "url": "https://yourdomain.com",
+      "telephone": "010-1234-5678",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "순천시 연향동 또는 조례동 대표 주소",
+        "addressLocality": "순천시",
+        "addressRegion": "전라남도",
+        "postalCode": "58000"
+      },
+      "priceRange": "50000 KRW - 1000000 KRW",
+      "areaServed": {
+        "@type": "State",
+        "name": "전라남도 순천시"
+      },
+      "description": "순천 지역민을 위한 맞춤형 포장이사, 반포장이사, 일반이사 서비스를 제공하는 전문 이삿짐센터입니다. 합리적인 비용과 안전한 운송을 약속드립니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "순천 이사 서비스 가격",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "순천 포장이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "500000",
+              "priceCurrency": "KRW"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "순천 반포장이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "400000",
+              "priceCurrency": "KRW"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            background-color: #f8f8f4; /* 부드러운 아이보리 배경 */
+            color: #333333;
+        }
+        header {
+            background-color: #20b2aa; /* 청록색 계열 */
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            border-bottom-left-radius: 50% 30px;
+            border-bottom-right-radius: 50% 30px;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.9), rgba(12, 100, 95, 0.8));
+            z-index: -1;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -1.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+        }
+        h2 {
+            color: #20b2aa;
+            font-size: 2.2rem;
+            margin-top: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #20b2aa;
+            display: block;
+            text-align: center;
+            font-weight: 700;
+        }
+        h3 {
+            color: #333333;
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            border-left: 5px solid #ff8c00;
+            padding-left: 15px;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        main {
+            max-width: 1000px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+        section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            border: 1px solid #e0e0e0;
+        }
+        section p, section ul, section dl, section form {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+            margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 1.4rem;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+        th {
+            background-color: #20b2aa;
+            color: white;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background-color: #f3fcfb;
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        td {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .price-highlight {
+            font-weight: 700;
+            color: #ff8c00; /* 강조 색상 */
+            font-size: 1.3rem;
+        }
+        .cta-button {
+            display: block;
+            width: fit-content;
+            margin: 2.5rem auto;
+            background-color: #ff8c00; /* 강조 색상 */
+            color: white;
+            font-weight: 700;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(255, 140, 0, 0.4);
+            font-size: 1.2rem;
+        }
+        .cta-button:hover {
+            background-color: #e67e00;
+            transform: translateY(-3px);
+        }
+        .keyword-tags {
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            text-align: center;
+            justify-content: center;
+        }
+        .keyword-tags a {
+            background-color: #e6f6f5;
+            color: #20b2aa;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            border: 1px solid #20b2aa;
+            font-weight: 500;
+        }
+        .keyword-tags a:hover {
+            background-color: #20b2aa;
+            color: white;
+        }
+        .external-links ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .external-links li {
+            margin-bottom: 15px;
+            border-left: 4px solid #ff8c00;
+            padding-left: 15px;
+        }
+        .external-links a {
+            color: #20b2aa;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .external-links a:hover {
+            text-decoration: underline;
+            color: #0d837d;
+        }
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            list-style: none;
+        }
+        .check-list li::before {
+            content: '\2713'; /* 체크마크 대신 유니코드 문자 */
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #28a745;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        dt {
+            font-weight: 700;
+            color: #20b2aa;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 10px;
+            font-size: 1.15rem;
+        }
+        dd {
+            margin-left: 0;
+            padding: 10px 0 15px 10px;
+            border-left: 3px solid #ff8c00;
+            background-color: #f9f9f9;
+            margin-top: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            overflow: hidden;
+            opacity: 0;
+        }
+        dt.active + dd {
+            display: block;
+            opacity: 1;
+            max-height: 500px;
+        }
+        form label {
+            display: block;
+            font-weight: 700;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        form input[type="text"],
+        form input[type="tel"],
+        form input[type="date"],
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        form button {
+            background-color: #20b2aa;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        form button:hover {
+            background-color: #1a8b85;
+        }
+        .content-box {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #ff8c00;
+        }
+        .content-box strong {
+            color: #ff8c00;
+        }
+
+        /* 10,000자 이상 콘텐츠 확보를 위한 추가 스타일 */
+        .full-text-content {
+            columns: 2; /* 다단 컬럼 레이아웃으로 가독성 향상 */
+            column-gap: 40px;
+            margin-top: 30px;
+            text-align: justify;
+        }
+        .full-text-content p {
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+            color: #666;
+            background-color: #e9ecef;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>순천이삿짐센터 최고의 선택 | 합리적인 포장이사 견적 전문</h1>
+        <p>전라남도 순천시 전 지역 (연향동, 조례동, 해룡면, 덕연동 등) 이사를 책임지는 전문 업체입니다.</p>
+        <nav>
+            <ul>
+                <li><a href="#service">이사 서비스</a></li>
+                <li><a href="#price">투명한 비용</a></li>
+                <li><a href="#area">순천 서비스 지역</a></li>
+                <li><a href="#prepare">2026 이사 준비</a></li>
+                <li><a href="#contact">견적 요청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="service">
+            <h2>순천이삿짐센터: 맞춤형 이사 서비스 안내</h2>
+            <p><strong>순천이삿짐센터</strong>는 고객님의 이사 환경과 짐의 양에 최적화된 맞춤형 이사 솔루션을 제공합니다. 순천 지역의 아파트, 빌라, 원룸, 오피스텔 이사는 물론, 사무실 이전, 보관이사까지 모든 형태의 이사를 전문적으로 취급합니다. 단순히 짐을 옮기는 것을 넘어, 고객님의 새로운 시작을 응원하는 마음으로 책임감 있는 서비스를 약속드립니다.</p>
+
+            <div class="keyword-tags" aria-label="순천 이사 관련 키워드">
+                <a href="#price">순천이사비용</a>
+                <a href="#contact">순천이삿짐센터가격</a>
+                <a href="#service">순천포장이사전문</a>
+                <a href="#service">순천용달이사</a>
+                <a href="#service">순천반포장이사</a>
+                <a href="#area">순천원룸이사</a>
+                <a href="#area">순천사무실이사</a>
+            </div>
+
+            <div class="content-box">
+                <h3>순천 포장이사 서비스</h3>
+                <p>포장에서 운송, 정리정돈, 청소까지 모든 과정을 순천이삿짐센터의 숙련된 전문가가 책임집니다. 바쁜 일상으로 이사 준비가 어려운 고객님께 가장 적합하며, 파손이나 분실의 위험을 최소화합니다. 특히, 주방 용품 정리, 가구 배치, 마무리 청소는 고객 만족도가 가장 높은 순천 포장이사의 핵심 서비스입니다.</p>
+                
+                <h3>순천 반포장이사 서비스</h3>
+                <p>포장은 저희가, 도착지에서의 짐 정리는 고객님께서 직접 진행하여 합리적인 비용을 추구하는 서비스입니다. 비용 절감 효과와 더불어, 고객님의 스타일에 맞춰 짐을 정리할 수 있다는 장점이 있습니다. 순천 지역의 짐이 적은 1.5룸이나 소형 빌라 이사 시 선호도가 높습니다.</p>
+
+                <h3>순천 일반이사 및 용달이사</h3>
+                <p>고객님께서 직접 모든 짐을 포장 및 정리하시고, 저희는 오직 운송 및 큰 짐의 상하차 작업만 담당합니다. 이사 비용이 가장 경제적이지만, 고객님의 노동력이 많이 필요합니다. 짐이 적은 순천 원룸이사 또는 자취방 이사에 적합한 형태이며, **순천용달이사**는 1톤 트럭 단위의 소량 운송을 의미합니다.</p>
+            </div>
+            
+            <p>저희 순천이삿짐센터는 모든 이사 과정에서 고객님의 개인 정보 보호와 물품 안전을 최우선으로 생각하며, 철저한 매뉴얼을 준수하고 있습니다. 이사 전 방문 견적을 통해 정확한 짐의 양과 작업 환경을 파악하여, 예상치 못한 추가 비용이 발생하지 않도록 투명한 계약을 체결합니다.</p>
+        </section>
+
+        <section id="price">
+            <h2>순천 이삿짐센터 투명한 비용 및 견적 안내</h2>
+            <p><strong>순천이사비용</strong>은 이사 형태, 짐의 양, 이사 거리, 작업 인원, 사다리차 사용 유무, 그리고 성수기/비수기 등의 요인에 의해 결정됩니다. 아래 표는 순천 지역 내 일반적인 이사 환경을 기준으로 한 대략적인 2026년 이사 비용 가이드라인입니다. 정확한 견적은 방문 상담을 통해 무료로 확인하실 수 있습니다.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>이사 서비스 종류</th>
+                        <th>특징 및 포함 서비스</th>
+                        <th>평균 작업 인원</th>
+                        <th>순천 이사 대략적 기준 비용 (VAT 별도)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>순천 포장이사 (2.5톤 기준)</td>
+                        <td>포장, 운반, 정리정돈, 청소 지원, 보험 가입</td>
+                        <td>2명 ~ 3명</td>
+                        <td><span class="price-highlight">50만원 ~ 75만원</span></td>
+                    </tr>
+                    <tr>
+                        <td>순천 반포장이사 (2.5톤 기준)</td>
+                        <td>포장, 운반, 큰 짐 정리 (나머지 고객 정리), 보험 가입</td>
+                        <td>1명 ~ 2명</td>
+                        <td><span class="price-highlight">40만원 ~ 60만원</span></td>
+                    </tr>
+                    <tr>
+                        <td>순천 일반이사 (2.5톤 기준)</td>
+                        <td>운반 및 상하차 지원 (고객 포장/정리), 보험 가입</td>
+                        <td>1명 ~ 2명</td>
+                        <td><span class="price-highlight">30만원 ~ 45만원</span></td>
+                    </tr>
+                    <tr>
+                        <td>순천 원룸/용달 이사 (1톤 기준)</td>
+                        <td>소형 짐 운송 전용, 간단한 상하차 지원</td>
+                        <td>1명</td>
+                        <td><span class="price-highlight">15만원 ~ 30만원</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p class="content-box"><strong>참고:</strong> 위 비용은 순천 지역에서 평일 중간층 이사를 기준으로 산정된 것이며, <strong>손 없는 날</strong>이나 주말, 장거리 이사 시에는 추가 비용이 발생할 수 있습니다. 예를 들어, **순천포장이사**를 하더라도 짐이 많은 3층 빌라 이사에는 사다리차 비용이 추가될 수 있으므로, 반드시 정확한 견적을 받아보시는 것이 중요합니다.</p>
+            
+            <a href="#contact" class="cta-button" aria-label="순천 이삿짐센터 무료 견적 요청">순천 이사 전문가에게 무료 견적 요청하기</a>
+        </section>
+
+        <section id="area">
+            <h2>순천이삿짐센터 서비스 가능 지역 및 이사 환경 특성 (83개 이상 키워드 반영)</h2>
+            <p>저희 순천이삿짐센터는 순천시의 모든 동과 읍면 지역에서 최상의 이사 서비스를 제공합니다. 특히, 순천은 신도시와 구도심이 조화롭게 발전하고 있어, 각 지역별 주거 환경에 최적화된 이사 노하우가 필요합니다. 저희는 순천 전 지역의 이사 경험을 바탕으로, 어떤 환경에서도 안전하고 신속하게 이사를 마무리합니다.</p>
+
+            <div class="full-text-content">
+                <p>순천의 중심 주거지인 **조례동**과 **연향동** 지역은 대단지 아파트 밀집 지역이 많아, 이사 시 엘리베이터 사용 예약 및 주차 공간 확보가 중요합니다. **연향동이삿짐센터**를 찾으시는 고객님들은 주로 **순천포장이사**를 선호하시며, 깔끔한 마무리 정리를 요청하십니다. **조례동**의 경우, 아파트와 빌라가 혼재되어 있어 이사 차량 진입로 및 사다리차 사용 가능 여부를 꼼꼼하게 확인해야 합니다. </p>
+
+                <p>새롭게 개발된 **신대지구**와 **오천동** 지역은 신축 아파트와 오피스텔이 많아, 이사 물량이 꾸준히 증가하고 있습니다. 특히 **해룡면**에 위치한 신대지구는 광양, 여수 등 인근 지역과의 이동도 많아 **순천 장거리 이사** 수요도 높은 편입니다. 저희는 이러한 지역의 특성을 반영하여 효율적인 이사 경로와 시간을 계획합니다. </p>
+                
+                <p>구도심 지역인 **덕연동**, **풍덕동**, **남제동**, **중앙동** 등은 상대적으로 좁은 골목길이 많고 노후된 주택이 분포하고 있어, 이사 차량인 2.5톤 트럭이나 5톤 트럭 진입 시 더욱 세심한 주의가 필요합니다. **덕암동**, **인제동**, **옥천동** 또한 마찬가지로, 주차 문제 해결을 위해 사전 답사 및 주민 동의를 얻는 절차를 철저히 진행합니다. </p>
+
+                <p>순천의 읍면 지역인 **서면**, **주암면**, **별량면**, **낙안면**, **상사면**, **황전면**, **월등면**, **송광면**, **외서면**, **승주읍**, **해룡면**의 경우, 도심과의 거리가 있어 **순천용달이사**와 **순천 반포장이사** 수요가 일정 부분 존재합니다. 농어촌 지역의 이사는 운송 거리가 길고 짐의 종류가 다양하여, 숙련된 이삿짐센터의 경험이 더욱 빛을 발하는 곳입니다. 저희는 **순천이사업체** 중에서도 가장 넓은 서비스 범위를 자랑하며, 읍면 지역 이사에도 추가적인 전문 인력을 투입하여 서비스 품질을 유지합니다. </p>
+
+                <p>이 외에도 **금당지구**의 대형 평수 이사, **왕지동**의 신규 주거단지 이사, **덕월동**, **장천동**, **가곡동**, **석현동**, **용당동** 등 순천의 모든 세부 지역인 **남정동**, **동외동**, **대룡동**, **교량동**, **삼산동**, **동산동**, **오산동**, **생목동**, **안풍동**, **홍내동**, **석흥동**, **망북동**, **구례동**까지 83개 이상의 모든 지역을 아우르는 전문적인 이사 서비스를 제공합니다. 각 동별로 이사 수요가 높은 시기가 다르므로, **순천이삿짐센터**를 예약하실 때에는 최소 3주 전에 문의하시는 것이 좋습니다. 특히, 신규 아파트 입주가 많은 **왕조동**이나 **해룡면 신대지구**는 이사 대란이 예상되므로 사전 준비가 필수적입니다. 저희는 이 모든 순천 지역 이사에 대한 상세한 데이터를 보유하고 있어, 고객님께 가장 빠르고 안전한 이사 계획을 제안드릴 수 있습니다. 지역 전문성을 갖춘 **순천이사업체**를 찾으신다면 저희가 해답입니다.</p>
+
+                <p>이사 환경적인 측면에서, **순천**은 비교적 평지보다는 구릉 지형도 많아 사다리차 사용이 어려운 경우도 종종 발생합니다. 이럴 때를 대비하여 저희는 특수 장비와 전문 인력을 확보하고 있습니다. 예를 들어, **도사동**이나 **저전동**과 같이 진입로가 협소한 지역은 소형 탑차를 활용하는 등 유연한 대응이 가능합니다. 이사 당일 예상치 못한 변수가 발생하지 않도록 이사 전후 과정에 대한 철저한 관리 감독 시스템을 운영하고 있습니다. 믿을 수 있는 **순천이삿짐센터**의 선택이 고객님의 편안한 이사를 보장합니다. </p>
+            </div>
+        </section>
+
+        <section id="prepare">
+            <h2>2026년 이사 성공을 위한 준비 전략 및 체크리스트</h2>
+            <p>성공적인 이사는 철저한 사전 준비에서 시작됩니다. 특히 2026년은 주거 환경 변화와 맞물려 이사 수요가 집중될 것으로 예상됩니다. 저희 순천이삿짐센터와 함께 이사 전 반드시 확인해야 할 사항들을 점검해 보세요.</p>
+            
+            <h3>2026년 이사철 예측 및 손 없는 날 정보</h3>
+            <p>2026년 이사 시장은 봄과 가을 성수기에 수요가 집중될 것으로 보입니다. 특히 주말과 겹치는 **'손 없는 날'**은 비용이 평일 대비 10% ~ 20% 이상 상승할 수 있습니다. **순천이사비용** 절감을 위해서는 가능한 평일이나 비수기를 활용하는 것이 유리합니다. 2026년 주요 손 없는 날은 이사 문의 시 상담을 통해 상세히 안내해 드립니다.</p>
+
+            <ul class="check-list">
+                <li>이사 4주 전: 최소 2~3곳의 **순천이삿짐센터**에서 방문 견적을 받고 비교합니다.</li>
+                <li>이사 3주 전: 최종 업체를 선정하고 계약서에 적재물배상책임보험 가입 여부를 확인합니다.</li>
+                <li>이사 2주 전: 불필요한 짐을 정리하고 폐가전 수거(순천시 재활용센터 등 이용)를 신청합니다.</li>
+                <li>이사 1주 전: 아파트 관리사무소에 이사 일정을 통보하고 엘리베이터, 사다리차 사용을 예약합니다.</li>
+                <li>이사 3일 전: 우체국 주소 이전 서비스를 신청하고, 전기/가스/수도 공과금을 정산합니다.</li>
+                <li>이사 당일: 귀중품은 직접 보관하고, 이사팀 도착 시 작업 지시 및 출발/도착지 환경을 설명합니다.</li>
+            </ul>
+
+            <p>이 외에도, 이사 후에는 전입신고 및 확정일자 신고, 자동차 등록 주소 변경 등 행정 절차도 잊지 말고 진행해야 합니다. 저희 **순천이사업체**는 이사 준비부터 마무리까지 고객님의 궁금증을 해결해 드리는 **이사 도우미** 역할을 충실히 수행합니다. 이사 체크리스트를 바탕으로 완벽한 이사를 계획하세요.</p>
+        </section>
+
+        <section id="external-info" class="external-links">
+            <h2>신뢰성 있는 순천 이사 관련 유용한 정보</h2>
+            <p>안전하고 투명한 이사를 위해 공인된 기관의 정보와 관련 법규를 확인해 보세요.</p>
+            <ul>
+                <li><a href="https://www.ftc.go.kr/www/cpw/service/selectBusi.do?key=670&busiType=08" target="_blank" title="공정거래위원회 이사화물 표준약관">공정거래위원회 이사화물 운송 주선 서비스 표준약관 확인</a></li>
+                <li><a href="https://namu.wiki/w/%EC%9D%B4%EC%82%AC%EC%84%9C%EB%B9%84%EC%8A%A4" target="_blank" title="이사 서비스 관련 나무위키 정보">이사 서비스의 종류 및 절차 (나무위키)</a></li>
+                <li><a href="https://www.molit.go.kr/" target="_blank" title="국토교통부 이사 화물 관련 정책">화물자동차 운수사업법 등 이사 관련 법규 및 정책 (국토교통부)</a></li>
+                <li><a href="https://www.gov.kr/main?a=AA020InfoCapMap&serviceCode=146000000010" target="_blank" title="정부24 전입신고 안내">정부24 온라인 전입신고 및 행정 서비스 안내</a></li>
+                <li><a href="https://www.kosc.or.kr/" target="_blank" title="한국소비자원 피해 구제 정보">이사 관련 피해 발생 시 소비자 분쟁 해결 기준 및 구제 절차 (한국소비자원)</a></li>
+                <li><a href="https://yourdomain.com/blog/suncheon_moving_tips" target="_blank" title="순천이삿짐센터 블로그">순천 이사 고객 후기 및 비용 절감 팁 (자체 블로그)</a></li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>순천이삿짐센터 무료 견적 및 예약 요청 (체류시간 극대화 폼)</h2>
+            <p>정확한 **순천이사비용** 산정을 위해 이사 형태, 짐의 양, 그리고 출발 및 도착지 정보를 상세하게 입력해 주시면, 저희 **순천이삿짐센터** 전문가가 직접 방문하여 무료로 견적을 상담해 드립니다.</p>
+            
+            <form action="https://yourdomain.com/submit_estimate" method="POST">
+                <label for="movingType">1. 희망 이사 종류 선택</label>
+                <select id="movingType" name="movingType" required>
+                    <option value="">이사 형태를 선택해 주세요</option>
+                    <option value="포장이사">순천 포장이사 (Full Service)</option>
+                    <option value="반포장이사">순천 반포장이사 (경제적)</option>
+                    <option value="일반이사">순천 일반이사 (운송만)</option>
+                    <option value="보관이사">순천 보관이사</option>
+                    <option value="사무실이사">순천 사무실이사</option>
+                </select>
+
+                <label for="date">2. 희망 이사 날짜 (2026년도 정보 삽입)</label>
+                <input type="date" id="date" name="date" min="2025-12-14" max="2026-12-31" required>
+                <p style="font-size: 0.95rem; color: #ff8c00; margin-top: -5px;">* 2026년 **손 없는 날**은 경쟁이 치열하니, 가급적 빨리 예약해 주세요.</p>
+
+                <label for="startAddress">3. 출발지 주소 (순천시 동/읍/면 단위)</label>
+                <input type="text" id="startAddress" name="startAddress" placeholder="예: 순천시 연향동 아파트 이름 또는 상세 주소" required>
+
+                <label for="endAddress">4. 도착지 주소 (시/군/구 단위 및 순천 지역명 키워드)</label>
+                <input type="text" id="endAddress" name="endAddress" placeholder="예: 순천시 조례동 또는 타 지역 (광양, 여수 등)" required>
+                
+                <label for="houseType">5. 주거 형태 및 평수</label>
+                <select id="houseType" name="houseType" required>
+                    <option value="">주거 형태를 선택해 주세요</option>
+                    <option value="원룸/오피스텔">원룸/오피스텔 (1인 가구)</option>
+                    <option value="투룸/빌라">투룸/빌라 (1~2인 가구)</option>
+                    <option value="아파트(20평대)">아파트 (20평대)</option>
+                    <option value="아파트(30평대)">아파트 (30평대 이상)</option>
+                    <option value="단독/주택">단독/주택</option>
+                </select>
+
+                <label for="notes">6. 추가 요청 사항 및 특이 사항 (짐의 양, 사다리차 유무 등)</label>
+                <textarea id="notes" name="notes" placeholder="침대, 냉장고 등 큰 가구 품목과 엘리베이터 또는 사다리차 사용 유무, 도착지 환경 등 상세 정보를 입력해 주시면 정확한 견적에 도움이 됩니다."></textarea>
+
+                <label for="contactTel">7. 연락처</label>
+                <input type="tel" id="contactTel" name="contactTel" placeholder="연락 가능한 전화번호 (010-XXXX-XXXX)" required>
+                
+                <button type="submit">순천 이삿짐센터 견적 무료 상담 요청</button>
+            </form>
+
+            <a href="tel:01012345678" class="cta-button" aria-label="순천 이사 전화 상담">전화로 바로 상담받기 (010-1234-5678)</a>
+        </section>
     </main>
-  </body>
+
+    <footer>
+        <p>순천이삿짐센터 | &copy; 2025-2026 순천 이사 전문 업체. 모든 권리 보유.</p>
+        <p>사업자 등록 번호: 123-45-67890 | 주소: 전라남도 순천시 연향동 순천 이사 전문</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const dd = dt.nextElementSibling;
+                const isActive = dt.classList.contains('active');
+                
+                // 모든 항목 닫기
+                document.querySelectorAll('dl dt').forEach(item => {
+                    item.classList.remove('active');
+                    item.setAttribute('aria-expanded', 'false');
+                    if (item.nextElementSibling) {
+                        item.nextElementSibling.style.display = 'none';
+                        item.nextElementSibling.style.opacity = '0';
+                    }
+                });
+
+                // 클릭된 항목 열기
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    if (dd) {
+                        dd.style.display = 'block';
+                        // 비동기적으로 opacity 적용하여 트랜지션 효과
+                        setTimeout(() => dd.style.opacity = '1', 10);
+                    }
+                }
+            });
+
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
